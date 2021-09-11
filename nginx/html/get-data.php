@@ -17,14 +17,14 @@ $api_key = $value1 = $value2 = $value3 = "";  // init all values at start of cal
 
 
 
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    echo "request made 2";
-    $api_key = clean_input($_POST["api_key"]);//get the incoming key from the request
+//default get to the co2 monitor server is to get ALL latest sensor readings - last sample in the db
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    echo "GET request made 2";
+    $api_key = clean_input($_GET["api_key"]);//get the incoming key from the request
     if ($api_key == $api_key_value) {
-        $value1 = clean_input($_POST["value1"]);
-        $value2 = clean_input($_POST["value2"]);
-        $value3 = clean_input($_POST["value3"]);
+        $value1 = clean_input($_GET["value1"]);
+        $value2 = clean_input($_GET["value2"]);
+        $value3 = clean_input($_GET["value3"]);
         
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);

@@ -231,12 +231,12 @@ $conn->close();
     <div class="column left-side">
       <h2>Sensor</h2>
       <canvas id="co2-gauge" data-type="radial-gauge" data-width="250" data-height="250" data-units="CO2 ppm"
-        data-title="false" data-value="400" data-min-value="400" data-max-value="1800"
-        data-major-ticks="400,600,800,1000,1200,1400,1600,1800" data-minor-ticks="2" data-stroke-ticks="false"
+        data-title="false" data-value="400" data-min-value="400" data-max-value="1400"
+        data-major-ticks="400,600,800,1000,1200,1400" data-minor-ticks="2" data-stroke-ticks="false"
         data-value-int="1" data-value-dec="0" data-font-value="courier" data-highlights='[
       { "from": 400, "to": 700, "color": "rgba(0,255,0,.5)" },
-      { "from": 700, "to": 1400, "color": "rgba(255,255,0,.5)" },
-      { "from": 1400, "to": 1800, "color": "rgba(255,0,0,.5)" }
+      { "from": 700, "to": 800, "color": "rgba(255,255,0,.5)" },
+      { "from": 800, "to": 1400, "color": "rgba(255,0,0,.5)" }
   
   ]' data-color-plate="#222" data-color-major-ticks="#f5f5f5" data-color-minor-ticks="#ddd" data-color-title="#fff"
         data-color-units="#ccc" data-color-numbers="#eee" data-color-needle-start="rgba(240, 128, 128, 1)"
@@ -328,15 +328,15 @@ var co2series = {};
   setInterval(function () {
     // var xhttp = new XMLHttpRequest();
     // xhttp.onreadystatechange = function () {
-      // if (this.readyState == 4 && this.status == 200) {
-        // var x = new Date().getTime(),
-        //   y = parseInt(this.responseText);
-        // console.log(this.responseText);
-        // if (chartT.series[0].data.length > 2160) {
-        //   chartT.series[0].addPoint([x, y], true, true, true);
-        // } else {
-        //   chartT.series[0].addPoint([x, y], true, false, true);
-        // }
+    //   if (this.readyState == 4 && this.status == 200) {
+    //     var x = new Date().getTime(),
+    //       y = parseInt(this.responseText);
+    //     console.log(this.responseText);
+    //     if (chartT.series[0].data.length > 2160) {
+    //       chartT.series[0].addPoint([x, y], true, true, true);
+    //     } else {
+    //       chartT.series[0].addPoint([x, y], true, false, true);
+    //     }
 
         // var points = chartT.series[0].groupedData;
     // var lastPoint = points[points.length - 1];
@@ -357,7 +357,7 @@ var co2series = {};
         gaugeElement.setAttribute("data-value", lastPoint);
         var gauge = document.gauges.get("co2-gauge");
         gauge.update();
-      // }
+    //   }
     // };
     // xhttp.open("GET", "/co2", true);
     // xhttp.send();

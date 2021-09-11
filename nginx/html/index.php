@@ -20,8 +20,8 @@
     <body>
         <!-- <img src="https://tech.osteel.me/images/2020/03/04/hello.gif" alt="Hello there" class="center"> -->
         <?php
-        $connection = new PDO('mysql:host=mysql;dbname=demo;charset=utf8', 'root', 'root');
-        $query      = $connection->query("SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'demo'");
+        $connection = new PDO('mysql:host=mysql;dbname=co2_monitor;charset=utf8', 'root', 'root');
+        $query      = $connection->query("SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'co2_monitor'");
         $tables     = $query->fetchAll(PDO::FETCH_COLUMN);
 
         if (empty($tables)) {
