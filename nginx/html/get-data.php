@@ -15,10 +15,7 @@ $api_key_value = "tPmAT5Ab3j7F9";
 
 $api_key = $value1 = $value2 = $value3 = "";  // init all values at start of call to this script
 
-echo "reqest made";
-// console.log("Message here");
 
-echo "hello world!" . PHP_EOL;
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

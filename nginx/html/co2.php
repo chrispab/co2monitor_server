@@ -16,7 +16,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT id, co2, temp, humidity, sample_time FROM readings order by sample_time desc";
+$sql = "SELECT id, co2, temp, humidity, sample_time FROM readings order by sample_time";
 
 $result = $conn->query($sql);
 
@@ -35,25 +35,6 @@ foreach ($readings_time as $reading){
     //$readings_time[$i] = date("Y-m-d H:i:s", strtotime("$reading + 4 hours"));
     $i += 1;
 }*/
-// const co2series = [];
-// $sensor_data.    .forEach ($sensor_data[]){
-//   $co2series;
-
-// };
-
-
-$co2Values = json_encode(array_reverse(array_column($sensor_data, 'co2')), JSON_NUMERIC_CHECK);
-$value2 = json_encode(array_reverse(array_column($sensor_data, 'temp')), JSON_NUMERIC_CHECK);
-$value3 = json_encode(array_reverse(array_column($sensor_data, 'humidity')), JSON_NUMERIC_CHECK);
-$reading_time = json_encode(array_reverse($readings_time), JSON_NUMERIC_CHECK);
-
-
-
-/*echo $value1;
-echo $value2;
-echo $value3;
-echo $reading_time;*/
-
 
 // try data in this format
 
@@ -64,36 +45,37 @@ echo $reading_time;*/
 // ]
 // x,y
 
-// g https://jsfiddle.net/BlackLabel/5wsL6euf/
+$co2series = array();
 
-// conmverrt $this->Array ( [0] => Array ( [id] => 707 [co2] => 713 [temp] => 23.00 [humidity] => 92.30 [sample_time] => 2021-09-09 23:58:55 ) [1] => Array ( [id] => 706 [co2] => 715 [temp] => 23.00 [humidity] => 92.20 [sample_time] => 2021-09-09 23:58:40 ) [2] => Array ( [id] => 705 [co2] => 716 [temp] => 23.10 [humidity] => 91.90 [sample_time] => 2021-09-09 23:58:25 ) [3] => Array ( [id] => 704 [co2] => 720 [temp] => 23.00 [humidity] => 92.40 [sample_time] => 2021-09-09 23:58:10 ) [4] => Array ( [id] => 703 [co2] => 725 [temp] => 23.10 [humidity] => 92.20 [sample_time] => 2021-09-09 23:57:55 ) [5] => Array ( [id] => 702 [co2] => 729 [temp] => 23.10 [humidity] => 92.40 [sample_time] => 2021-09-09 23:57:40 ) [6] => Array ( [id] => 701 [co2] => 733 [temp] => 23.10 [humidity] => 92.00 [sample_time] => 2021-09-09 23:57:25 ) [
-  // to $this->;;
-//   Array
-// (
-//     [0] => Array
-//         (
-//             [id] => 778
-//             [co2] => 734
-//             [temp] => 23.00
-//             [humidity] => 92.70
-//             [sample_time] => 2021-09-10 00:16:48
-//         )
+foreach ($sensor_data as $reading ){
+  // array_push($co2series,$reading['sample_time'],$reading['co2']);
+                  // Add to $arrJSON
+                  // $row = array($reading['sample_time'], $reading['co2']);
 
-//     [1] => Array
-//         (
-//             [id] => 777
-//             [co2] => 734
-//             [temp] => 23.00
-//             [humidity] => 92.90
-//             [sample_time] => 2021-09-10 00:16:33
-//         )
 
-  // https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-arrays-datetime/
-//   Highcharts.chart('container', {
-//     xAxis: {
-//         type: 'datetime'
-//     },
+// Split timestamp into [ Y, M, D, h, m, s ]
+// var t = "2010-06-09 13:12:01".split(/[- :]/);
+// var t = $reading['sample_time'].split(/[- :]/);
 
+// Apply each element to the Date function
+// var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
+$d = DateTime::createFromFormat('Y-m-d H:i:s', $reading['sample_time']);
+if ($d === false) {
+    die("Incorrect date string");
+} else {
+    echo $d->getTimestamp();
+}
+
+  // $rowarray = array($reading['sample_time'], $reading['co2'] );
+  $rowarray = array($d->getTimestamp(), $reading['co2'] );
+
+  $co2series[] = $rowarray;
+}
+// encode
+$co2seriesJSON = json_encode($co2series,JSON_NUMERIC_CHECK);
+// $co2seriesJSON = $co2series;
+// [["2021-09-10 16:42:31",695],["2021-09-10 16:42:46",695],["2021-09-10 16:43:01",693],["2021-09-10 16:43:16",694],["2021-09-10 16:43:31",695],["2021-09-10 16:43:47",694],["2021-09-10 16:44:02",693]]
+// data: [[5, 2], [6, 3], [8, 2]]
 //     series: [{
 //         data: [
 //             [Date.UTC(2010, 0, 1), 29.9],
@@ -101,7 +83,12 @@ echo $reading_time;*/
 //             [Date.UTC(2010, 3, 1), 106.4]
 //         ]
 //     }]
-// });
+
+// $co2Values = json_encode(array_reverse(array_column($sensor_data, 'co2')), JSON_NUMERIC_CHECK);
+
+// g https://jsfiddle.net/BlackLabel/5wsL6euf/
+
+  // https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-arrays-datetime/
 
 $result->free();
 $conn->close();
@@ -114,6 +101,7 @@ $conn->close();
   <meta charset="utf-8">
   <title>CO2 Monitor</title>
   <!-- <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/> -->
+  <link rel="shortcut icon" type="image/png" href="favicon-32x32.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
@@ -121,6 +109,8 @@ $conn->close();
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="//cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.7/radial/gauge.min.js"></script>
+
+  
   <style>
     * {
       box-sizing: border-box;
@@ -272,33 +262,29 @@ $conn->close();
     </div>
 
   </div>
-  <!-- <?php echo var_dump($sensor_data); ?>; -->
+
   <?php echo '<pre>'; ?>;
-  <?php echo print_r($sensor_data); ?>;
-  <?php echo $co2Values; ?>;<?php echo $reading_time; ?>;
+
+  <?php echo 'co2seriesJSON'; ?>;
+  <?php echo $co2seriesJSON ?>;
+
+
+
+
 </body>
+
+
 <script>
-
-
-
-
-
-
-
-
-  var co2Values = <?php echo $co2Values; ?>;
-  var reading_time = <?php echo $reading_time; ?>;
-
+var co2series = {};
+  co2series = <?php  print_r($co2seriesJSON); ?>;
+  // var co2series = [["2021-09-10 16:42:31",695],["2021-09-10 16:42:46",695],["2021-09-10 16:43:01",693]];
+// console.log(co2series);
   var chartT = new Highcharts.Chart({
     chart: { renderTo: "chart-co2", type: 'spline', zoomType: 'x' },
     title: { text: "CO2 Level - ppm" },
-    series: [
-      {
-        showInLegend: false,
-        data: co2Values,
-        name: 'co2 ppm'
-      },
-    ],
+    series: [{
+        data: co2series
+      }],
     plotOptions: {
       spline: {
         animation: true,
@@ -308,15 +294,8 @@ $conn->close();
       
     },
     xAxis: {
-      type: "datetime",
-      labels: {
-            format: '{value:%k-%M-%S, reading_time}',
-            rotation: 45,
-            align: 'left'
-        },
-      // dateTimeLabelFormats: { second: "%H:%M:%S" },
-      // categories: reading_time,
-
+      type: 'datetime',
+      dateTimeLabelFormats: { hour: '%H:%M' },
     },
     yAxis: {
       title: { text: "CO2 - ppm" },
@@ -329,11 +308,11 @@ $conn->close();
         {
           color: "#f0cf56", // Color value
           from: 700, // Start of the plot band
-          to: 1400, // End of the plot band
+          to: 800, // End of the plot band
         },
         {
           color: "#d13d44", // Color value
-          from: 1400, // Start of the plot band
+          from: 800, // Start of the plot band
           to: 1800, // End of the plot band
         },
       ],
@@ -345,99 +324,104 @@ $conn->close();
     global: { useUTC: false }
   });
 
+//update co2 values on screen
+  setInterval(function () {
+    // var xhttp = new XMLHttpRequest();
+    // xhttp.onreadystatechange = function () {
+      // if (this.readyState == 4 && this.status == 200) {
+        // var x = new Date().getTime(),
+        //   y = parseInt(this.responseText);
+        // console.log(this.responseText);
+        // if (chartT.series[0].data.length > 2160) {
+        //   chartT.series[0].addPoint([x, y], true, true, true);
+        // } else {
+        //   chartT.series[0].addPoint([x, y], true, false, true);
+        // }
+
+        // var points = chartT.series[0].groupedData;
+    // var lastPoint = points[points.length - 1];
+          var lastPoint = co2series[co2series.length-1][1];
+        document.getElementById("meter_value").value = lastPoint;
+
+        let str = document.getElementById("co2_level").innerHTML
+        encharloc = str.lastIndexOf(":")
+        str.substring(0, encharloc)
+        document.getElementById("co2_level").innerHTML = str.substring(0, encharloc + 2) + lastPoint
+
+        document.getElementById("co2_level").innerHTML = String(document.getElementById("co2_level").innerHTML).substring(0, String(document.getElementById("co2_level").innerHTML).lastIndexOf(":") + 2) + lastPoint;
+
+
+
+        var gaugeElement = document.getElementsByTagName("canvas")[0];
+
+        gaugeElement.setAttribute("data-value", lastPoint);
+        var gauge = document.gauges.get("co2-gauge");
+        gauge.update();
+      // }
+    // };
+    // xhttp.open("GET", "/co2", true);
+    // xhttp.send();
+    // every 15 secs
+  }, 15000);
+        // var s = document.getElementById(meter_value).value;
+        // s.value = y;
+                // document.getElementById("co2_level").innerHTML = y;
+
+  //! fetch temperature periodically
   // setInterval(function () {
   //   var xhttp = new XMLHttpRequest();
   //   xhttp.onreadystatechange = function () {
   //     if (this.readyState == 4 && this.status == 200) {
   //       var x = new Date().getTime(),
-  //         y = parseInt(this.responseText);
+  //         y = parseFloat(this.responseText);
   //       console.log(this.responseText);
-  //       if (chartT.series[0].data.length > 2160) {
-  //         chartT.series[0].addPoint([x, y], true, true, true);
-  //       } else {
-  //         chartT.series[0].addPoint([x, y], true, false, true);
-  //       }
-  //       // var s = document.getElementById(meter_value).value;
-  //       // s.value = y;
-  //       document.getElementById("meter_value").value = y;
-  //       // document.getElementById("co2_level").innerHTML = y;
 
-  //       let str = document.getElementById("co2_level").innerHTML
-  //       encharloc = str.lastIndexOf(":")
-  //       str.substring(0, encharloc)
-  //       document.getElementById("co2_level").innerHTML = str.substring(0, encharloc + 2) + y
+  //       // document.getElementById("temperature_level").innerHTML = y;
+  //       document.getElementById("temperature_level").innerHTML = String(document.getElementById("temperature_level").innerHTML).substring(0, String(document.getElementById("temperature_level").innerHTML).lastIndexOf(":") + 2) + y;
 
-  //       document.getElementById("co2_level").innerHTML = String(document.getElementById("co2_level").innerHTML).substring(0, String(document.getElementById("co2_level").innerHTML).lastIndexOf(":") + 2) + y;
-
-
-
-  //       var gaugeElement = document.getElementsByTagName("canvas")[0];
-
-  //       gaugeElement.setAttribute("data-value", y);
-  //       var gauge = document.gauges.get("co2-gauge");
-  //       gauge.update();
   //     }
   //   };
-  //   xhttp.open("GET", "/co2", true);
+  //   xhttp.open("GET", "/temperature", true);
   //   xhttp.send();
-  //   // every 15 secs
-  // }, 15000);
+  // }, 30000); // 30 secs
 
-  //! fetch temperature periodically
-  setInterval(function () {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        var x = new Date().getTime(),
-          y = parseFloat(this.responseText);
-        console.log(this.responseText);
+  // //! fetch humidity_level periodically
+  // setInterval(function () {
+  //   var xhttp = new XMLHttpRequest();
+  //   xhttp.onreadystatechange = function () {
+  //     if (this.readyState == 4 && this.status == 200) {
+  //       var x = new Date().getTime(),
+  //         y = parseFloat(this.responseText);
+  //       console.log(this.responseText);
+  //       // document.getElementById("humidity_level").innerHTML = y;
+  //       document.getElementById("humidity_level").innerHTML = String(document.getElementById("humidity_level").innerHTML).substring(0, String(document.getElementById("humidity_level").innerHTML).lastIndexOf(":") + 2) + y;
 
-        // document.getElementById("temperature_level").innerHTML = y;
-        document.getElementById("temperature_level").innerHTML = String(document.getElementById("temperature_level").innerHTML).substring(0, String(document.getElementById("temperature_level").innerHTML).lastIndexOf(":") + 2) + y;
-
-      }
-    };
-    xhttp.open("GET", "/temperature", true);
-    xhttp.send();
-  }, 30000); // 30 secs
-
-  //! fetch humidity_level periodically
-  setInterval(function () {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        var x = new Date().getTime(),
-          y = parseFloat(this.responseText);
-        console.log(this.responseText);
-        // document.getElementById("humidity_level").innerHTML = y;
-        document.getElementById("humidity_level").innerHTML = String(document.getElementById("humidity_level").innerHTML).substring(0, String(document.getElementById("humidity_level").innerHTML).lastIndexOf(":") + 2) + y;
-
-      }
-    };
-    xhttp.open("GET", "/humidity", true);
-    xhttp.send();
-  }, 30000); // 30 secs
+  //     }
+  //   };
+  //   xhttp.open("GET", "/humidity", true);
+  //   xhttp.send();
+  // }, 30000); // 30 secs
 
 
   //! fetch time periodically
-  setInterval(function () {
+  // setInterval(function () {
 
-    var x = new Date().getTime();
-    // var datestringx = x.getHours() + ":" + x.getMinutes() + ":" + x.getSeconds();
+  //   var x = new Date().getTime();
+  //   // var datestringx = x.getHours() + ":" + x.getMinutes() + ":" + x.getSeconds();
 
-    var d = new Date();
+  //   var d = new Date();
 
-    var datestringd = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear() + " " +
-      d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+  //   var datestringd = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear() + " " +
+  //     d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
 
-    // console.log(x);
-    // console.log(d);
+  //   // console.log(x);
+  //   // console.log(d);
 
-    // document.getElementById("time").innerHTML = datestringd;
-    // document.getElementById("time").innerHTML = document.getElementById("time").innerHTML.substring(0, document.getElementById("time").innerHTML.lastIndexOf(":") +2) + datestringd;
-    document.getElementById("time").innerHTML = String(document.getElementById("time").innerHTML).substring(0, String(document.getElementById("time").innerHTML).indexOf(":") + 2) + datestringd;
+  //   // document.getElementById("time").innerHTML = datestringd;
+  //   // document.getElementById("time").innerHTML = document.getElementById("time").innerHTML.substring(0, document.getElementById("time").innerHTML.lastIndexOf(":") +2) + datestringd;
+  //   document.getElementById("time").innerHTML = String(document.getElementById("time").innerHTML).substring(0, String(document.getElementById("time").innerHTML).indexOf(":") + 2) + datestringd;
 
-  }, 1000);
+  // }, 1000);
 </script>
 
 </html>
