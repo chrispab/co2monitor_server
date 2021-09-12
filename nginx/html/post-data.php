@@ -1,7 +1,8 @@
 <?php
 
+// https://randomnerdtutorials.com/visualize-esp32-esp8266-sensor-readings-from-anywhere/
 
-$servername = "mysql";
+$servername = "mysql"; // doker service name - part of the same network on co2-monitor-network
 
 // REPLACE with your Database name
 $dbname = "co2_monitor";
