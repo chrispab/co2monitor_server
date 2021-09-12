@@ -14,13 +14,13 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-} 
+}
 
 $sql = "SELECT id, co2, temp, humidity, sample_time FROM readings order by sample_time";
 
 $result = $conn->query($sql);
 
-while ($data = $result->fetch_assoc()){
+while ($data = $result->fetch_assoc()) {
     $sensor_data[] = $data;
 }
 
@@ -38,33 +38,33 @@ foreach ($readings_time as $reading){
 
 $co2series = array();
 
-foreach ($sensor_data as $reading ){
-  // array_push($co2series,$reading['sample_time'],$reading['co2']);
-                  // Add to $arrJSON
-                  // $row = array($reading['sample_time'], $reading['co2']);
+foreach ($sensor_data as $reading) {
+    // array_push($co2series,$reading['sample_time'],$reading['co2']);
+    // Add to $arrJSON
+    // $row = array($reading['sample_time'], $reading['co2']);
 
 
-// Split timestamp into [ Y, M, D, h, m, s ]
-// var t = "2010-06-09 13:12:01".split(/[- :]/);
-// var t = $reading['sample_time'].split(/[- :]/);
+    // Split timestamp into [ Y, M, D, h, m, s ]
+    // var t = "2010-06-09 13:12:01".split(/[- :]/);
+    // var t = $reading['sample_time'].split(/[- :]/);
 
-// Apply each element to the Date function
-// var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
-$timezone = new \DateTimeZone('Europe/London');
-$d = DateTime::createFromFormat('Y-m-d H:i:s', $reading['sample_time'], $timezone);
-if ($d === false) {
-    die("Incorrect date string");
-} else {
-    // echo $d->getTimestamp();
-}
+    // Apply each element to the Date function
+    // var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
+    $timezone = new \DateTimeZone('Europe/London');
+    $d = DateTime::createFromFormat('Y-m-d H:i:s', $reading['sample_time'], $timezone);
+    if ($d === false) {
+        die("Incorrect date string");
+    } else {
+        // echo $d->getTimestamp();
+    }
 
-  // $rowarray = array($reading['sample_time'], $reading['co2'] );
-  $rowarray = array($d->getTimestamp()*1000, $reading['co2'] );
+    // $rowarray = array($reading['sample_time'], $reading['co2'] );
+    $rowarray = array($d->getTimestamp()*1000, $reading['co2'] );
 
-  $co2series[] = $rowarray;
+    $co2series[] = $rowarray;
 }
 // encode
-$co2seriesJSON = json_encode($co2series,JSON_NUMERIC_CHECK);
+$co2seriesJSON = json_encode($co2series, JSON_NUMERIC_CHECK);
 // $co2seriesJSON = $co2series;
 // [["2021-09-10 16:42:31",695],["2021-09-10 16:42:46",695],["2021-09-10 16:43:01",693],["2021-09-10 16:43:16",694],["2021-09-10 16:43:31",695],["2021-09-10 16:43:47",694],["2021-09-10 16:44:02",693]]
 // data: [[5, 2], [6, 3], [8, 2]]
@@ -84,4 +84,3 @@ $co2seriesJSON = json_encode($co2series,JSON_NUMERIC_CHECK);
 
 $result->free();
 $conn->close();
-?>
