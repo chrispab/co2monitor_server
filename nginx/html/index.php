@@ -50,21 +50,19 @@
             <div>
                 <meter class="co2_meter" id="meter_value" min="500" low="700" high="800" max="1000" optimum="600" value="500"></meter>
             </div>
+            <p></p>
             <div id="demo">
-                <p>100 samples</p>
-                <button type="button" onclick="loadData(100)">100</button>
-            </div>            <div id="demo">
-                <p>500 samples</p>
-                <button type="button" onclick="loadData(500)">500</button>
+                <button type="button" onclick="loadData(100)">100 samples</button>
             </div>
             <div id="demo">
-                <p>1000 samples</p>
-                <button type="button" onclick="loadData(1000)">1000</button>
+                <button type="button" onclick="loadData(500)">500 samples</button>
             </div>
             <div id="demo">
-                <p>1500 samples</p>
-                <button type="button" onclick="loadData(1500)">1500</button>
-            </div>            
+                <button type="button" onclick="loadData(1000)">1000 samples</button>
+            </div>
+            <div id="demo">
+                <button type="button" onclick="loadData(1500)">1500 samples</button>
+            </div>
         </div>
 
     </div>
