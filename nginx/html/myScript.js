@@ -56,7 +56,7 @@ Highcharts.setOptions({
 // co2series = [];
 loadData();
 // load data
-function loadData() {
+function loadData(num_records=1000) {
   const xhttp = new XMLHttpRequest();
   xhttp.onload = function () {
     //   if (this.readyState == 4 && this.status == 200) {
@@ -157,7 +157,7 @@ function loadData() {
   };
   xhttp.open(
     "GET",
-    "/get-n-records.php?api_key=tPmAT5Ab3j7F9&num_records=2000",
+    "/get-n-records.php?api_key=tPmAT5Ab3j7F9&num_records=" + num_records,
     true
   );
   xhttp.send();
