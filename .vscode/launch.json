@@ -8,7 +8,12 @@
             "name": "Listen for Xdebug",
             "type": "php",
             "request": "launch",
-            "port": 9003
+            "port": 9003,
+            // server -> local
+            "pathMappings": {
+                "/usr/share/nginx/html": "${workspaceFolder}/nginx/html"
+                // ,"/app": "${workspaceFolder}/app"
+            }
         },
         {
             "name": "Launch currently open script",
@@ -16,7 +21,14 @@
             "request": "launch",
             "program": "${file}",
             "cwd": "${fileDirname}",
-            "port": 0,
+            "port": 9003,
+            // "hostname": "127.0.0.1",
+            "stopOnEntry": true,
+            // server -> local
+            "pathMappings": {
+                "/usr/share/nginx/html": "${workspaceFolder}/nginx/html"
+                // ,"/app": "${workspaceFolder}/app"
+            },
             "runtimeArgs": [
                 "-dxdebug.start_with_request=yes"
             ],
