@@ -43,14 +43,38 @@
 
         <div class="column right-side">
             <h2>Latest Reading</h2>
-            <h3 id="co2_level">CO<sub>2</sub> level(ppm): </h3>
-            <h4 id="temperature_level">Temperature (C): </h4>
-            <h4 id="humidity_level">Humidity (%): </h4>
-            <h4 id="time">Time : </h4>
+            <!-- <h3 id="co2_level">CO<sub>2</sub> level(ppm): </h3> -->
+            <!-- <div style="clear: both">
+                <h3 style="float: left">CO<sub>2</sub> level(ppm): </h3>
+                <h2 style="float: right">placeholder</h2>
+            </div> -->
+            <!-- <hr /> -->
+            <div>
+                <h3 class="h-inline">CO<sub>2</sub> level(ppm): </h3>
+                <h2 class="h-inline" id="co2_level">value</h2>
+            </div>
+            <div>
+                <h4 class="h-inline">Temperature (C): </h4>
+                <h3 class="h-inline" id="temperature_level">value</h2>
+            </div>
+            <div>
+                <h4 class="h-inline">Humidity (%): </h4>
+                <h3 class="h-inline" id="humidity_level">Humidity (%): </h3>
+
+            </div>
+            <div>
+                <h4 class="h-inline">Time : </h4>
+                <h4 class="h-inline" id="time">Value : </h4>
+
+            </div>
+
             <div>
                 <meter class="co2_meter" id="meter_value" min="500" low="700" high="800" max="1000" optimum="600" value="500"></meter>
             </div>
             <p></p>
+            <!-- <div id="demo">
+                <button type="button" onclick="loadLast_n_HoursData(0.5)">1/2 hour</button>
+            </div> -->
             <div id="demo">
                 <button type="button" onclick="loadLast_n_HoursData(1)">1 hour</button>
             </div>
