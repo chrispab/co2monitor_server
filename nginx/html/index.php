@@ -63,7 +63,18 @@
             <div id="demo">
                 <button type="button" onclick="loadData(1500)">1500 samples</button>
             </div>
+            <div id="demo">
+                <button type="button" onclick="loadData(2000)">2000 samples</button>
+            </div>
+            <div id="demo">
+                <button type="button" onclick="loadData(2500)">2500 samples</button>
+            </div>
+            <div id="demo">
+                <button type="button" onclick="loadData(3000)">3000 samples</button>
+            </div>
         </div>
+
+    </div>
 
     </div>
 
