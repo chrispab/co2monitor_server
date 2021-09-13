@@ -52,25 +52,28 @@
             </div>
             <p></p>
             <div id="demo">
-                <button type="button" onclick="loadData(100)">100 samples</button>
+                <button type="button" onclick="loadLast_n_HoursData(1)">1 hour</button>
             </div>
             <div id="demo">
-                <button type="button" onclick="loadData(500)">500 samples</button>
+                <button type="button" onclick="loadLast_n_HoursData(2)">2 hours</button>
             </div>
             <div id="demo">
-                <button type="button" onclick="loadData(1000)">1000 samples</button>
+                <button type="button" onclick="loadLast_n_HoursData(3)">3 hours</button>
             </div>
             <div id="demo">
-                <button type="button" onclick="loadData(1500)">1500 samples</button>
+                <button type="button" onclick="loadLast_n_HoursData(4)">4 hours</button>
             </div>
             <div id="demo">
-                <button type="button" onclick="loadData(2000)">2000 samples</button>
+                <button type="button" onclick="loadLast_n_HoursData(6)">6 hours</button>
             </div>
             <div id="demo">
-                <button type="button" onclick="loadData(2500)">2500 samples</button>
+                <button type="button" onclick="loadLast_n_HoursData(8)">8 hours</button>
             </div>
             <div id="demo">
-                <button type="button" onclick="loadData(3000)">3000 samples</button>
+                <button type="button" onclick="loadLast_n_HoursData(12)">12 hours</button>
+            </div>
+            <div id="demo">
+                <button type="button" onclick="loadLast_n_HoursData(24)">24 hours</button>
             </div>
         </div>
 
