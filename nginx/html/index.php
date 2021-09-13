@@ -72,38 +72,36 @@
                 <meter class="co2_meter" id="meter_value" min="500" low="700" high="800" max="1000" optimum="600" value="500"></meter>
             </div>
             <p></p>
-            <!-- <div id="demo">
-                <button type="button" onclick="loadLast_n_HoursData(0.5)">1/2 hour</button>
-            </div> -->
-            <div id="demo">
+
+            <hr />
+            <div>
                 <button type="button" onclick="loadLast_n_HoursData(1)">1 hour</button>
             </div>
-            <div id="demo">
+            <div>
                 <button type="button" onclick="loadLast_n_HoursData(2)">2 hours</button>
             </div>
-            <div id="demo">
+            <div>
                 <button type="button" onclick="loadLast_n_HoursData(3)">3 hours</button>
             </div>
-            <div id="demo">
+            <div>
                 <button type="button" onclick="loadLast_n_HoursData(4)">4 hours</button>
             </div>
-            <div id="demo">
+            <div>
                 <button type="button" onclick="loadLast_n_HoursData(6)">6 hours</button>
             </div>
-            <div id="demo">
+            <div>
                 <button type="button" onclick="loadLast_n_HoursData(8)">8 hours</button>
             </div>
-            <div id="demo">
+            <div>
                 <button type="button" onclick="loadLast_n_HoursData(12)">12 hours</button>
             </div>
-            <div id="demo">
+            <div>
                 <button type="button" onclick="loadLast_n_HoursData(24)">24 hours</button>
             </div>
         </div>
 
     </div>
 
-    </div>
 
     <?php echo '<pre>'; ?>;
 
