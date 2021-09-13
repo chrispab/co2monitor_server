@@ -91,34 +91,14 @@ function loadLast_n_HoursData(nHours = 4) {
     document.getElementById("co2_level").innerHTML =
       str.substring(0, encharloc + 2) + y;
 
-    document.getElementById("co2_level").innerHTML =
-      String(document.getElementById("co2_level").innerHTML).substring(
-        0,
-        String(document.getElementById("co2_level").innerHTML).lastIndexOf(
-          ":"
-        ) + 2
-      ) + y;
 
-    document.getElementById("temperature_level").innerHTML =
-      String(document.getElementById("temperature_level").innerHTML).substring(
-        0,
-        String(
-          document.getElementById("temperature_level").innerHTML
-        ).lastIndexOf(":") + 2
-      ) + temp;
-    document.getElementById("humidity_level").innerHTML =
-      String(document.getElementById("humidity_level").innerHTML).substring(
-        0,
-        String(document.getElementById("humidity_level").innerHTML).lastIndexOf(
-          ":"
-        ) + 2
-      ) + humidity;
+      document.getElementById("co2_level").innerHTML = y;
 
-    document.getElementById("time").innerHTML =
-      String(document.getElementById("time").innerHTML).substring(
-        0,
-        String(document.getElementById("time").innerHTML).indexOf(":") + 2
-      ) + dt;
+    document.getElementById("temperature_level").innerHTML = temp;
+
+    document.getElementById("humidity_level").innerHTML = humidity;
+
+    document.getElementById("time").innerHTML = dt;
 
     var gaugeElement = document.getElementsByTagName("canvas")[0];
 
@@ -201,34 +181,13 @@ function loadData(num_records = 1000) {
     document.getElementById("co2_level").innerHTML =
       str.substring(0, encharloc + 2) + y;
 
-    document.getElementById("co2_level").innerHTML =
-      String(document.getElementById("co2_level").innerHTML).substring(
-        0,
-        String(document.getElementById("co2_level").innerHTML).lastIndexOf(
-          ":"
-        ) + 2
-      ) + y;
+      document.getElementById("co2_level").innerHTML = y;
 
-    document.getElementById("temperature_level").innerHTML =
-      String(document.getElementById("temperature_level").innerHTML).substring(
-        0,
-        String(
-          document.getElementById("temperature_level").innerHTML
-        ).lastIndexOf(":") + 2
-      ) + temp;
-    document.getElementById("humidity_level").innerHTML =
-      String(document.getElementById("humidity_level").innerHTML).substring(
-        0,
-        String(document.getElementById("humidity_level").innerHTML).lastIndexOf(
-          ":"
-        ) + 2
-      ) + humidity;
-
-    document.getElementById("time").innerHTML =
-      String(document.getElementById("time").innerHTML).substring(
-        0,
-        String(document.getElementById("time").innerHTML).indexOf(":") + 2
-      ) + dt;
+      document.getElementById("temperature_level").innerHTML = temp;
+  
+      document.getElementById("humidity_level").innerHTML = humidity;
+  
+      document.getElementById("time").innerHTML = dt;
 
     var gaugeElement = document.getElementsByTagName("canvas")[0];
 
@@ -313,36 +272,13 @@ setInterval(function () {
       document.getElementById("co2_level").innerHTML =
         str.substring(0, encharloc + 2) + y;
 
-      document.getElementById("co2_level").innerHTML =
-        String(document.getElementById("co2_level").innerHTML).substring(
-          0,
-          String(document.getElementById("co2_level").innerHTML).lastIndexOf(
-            ":"
-          ) + 2
-        ) + y;
+        document.getElementById("co2_level").innerHTML = y;
 
-      document.getElementById("temperature_level").innerHTML =
-        String(
-          document.getElementById("temperature_level").innerHTML
-        ).substring(
-          0,
-          String(
-            document.getElementById("temperature_level").innerHTML
-          ).lastIndexOf(":") + 2
-        ) + temp;
-      document.getElementById("humidity_level").innerHTML =
-        String(document.getElementById("humidity_level").innerHTML).substring(
-          0,
-          String(
-            document.getElementById("humidity_level").innerHTML
-          ).lastIndexOf(":") + 2
-        ) + humidity;
-
-      document.getElementById("time").innerHTML =
-        String(document.getElementById("time").innerHTML).substring(
-          0,
-          String(document.getElementById("time").innerHTML).indexOf(":") + 2
-        ) + dt;
+        document.getElementById("temperature_level").innerHTML = temp;
+    
+        document.getElementById("humidity_level").innerHTML = humidity;
+    
+        document.getElementById("time").innerHTML = dt;
 
       var gaugeElement = document.getElementsByTagName("canvas")[0];
 

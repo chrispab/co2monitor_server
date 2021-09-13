@@ -8,6 +8,11 @@ body {
   background-color: rgb(127, 156, 126);
 }
 
+.h-inline {
+  display: inline;
+  padding: 5px;
+}
+
 /* Style the header */
 .header {
   /* background-color: #f1f1f1; */
