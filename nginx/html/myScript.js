@@ -24,12 +24,12 @@ var chartT = new Highcharts.Chart({
   },
   yAxis: {
     title: { text: "CO2 - ppm" },
-    min: 500,
+    min: 400,
     max: 1000,
     plotBands: [
       {
         color: "#9cc940", // Color value
-        from: 500, // Start of the plot band
+        from: 400, // Start of the plot band
         to: 700, // End of the plot band
       },
       {
