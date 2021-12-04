@@ -98,6 +98,12 @@
             <div>
                 <button type="button" onclick="loadLast_n_HoursData(24)">24 hours</button>
             </div>
+            <div>
+                <button type="button" onclick="loadLast_n_HoursData(48)">48 hours</button>
+            </div>
+            <div>
+                <button type="button" onclick="loadLast_n_HoursData(76)">76 hours</button>
+            </div>                        
         </div>
 
     </div>
