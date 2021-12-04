@@ -16,7 +16,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT id, co2, temp, humidity, sample_time FROM readings order by sample_time";
+// $sql = "SELECT id, co2, temp, humidity, sample_time FROM readings order by sample_time LIMIT 100";
+$sql = "SELECT * FROM readings  WHERE `sample_time` > DATE_SUB(NOW(), INTERVAL '24' HOUR) ORDER BY sample_time DESC";
 
 $result = $conn->query($sql);
 
