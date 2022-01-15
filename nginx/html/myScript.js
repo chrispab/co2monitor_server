@@ -29,7 +29,7 @@ var chartT = new Highcharts.Chart({
     plotBands: [
       {
         color: "#9cc940", // Color value
-        from: 400, // Start of the plot band
+        from: 300, // Start of the plot band
         to: 700, // End of the plot band
       },
       {
@@ -116,7 +116,9 @@ function loadLast_n_HoursData(nHours = 4) {
     var new_co2_series = [];
     var pair = [];
 
-    var maxCo2 = 0; //to store max co2 reading
+    var maxCo2 = 1000; //set max to a min of
+    var minCo2 = 400; //set min to a min of
+
     console.log("current max co2 " + maxCo2);
     data_array.forEach(myFunction);
     function myFunction(value, index, array) {
@@ -132,6 +134,11 @@ function loadLast_n_HoursData(nHours = 4) {
         // console.log("new max co2 " + maxCo2);
         // console.log(maxCo2);
       }
+      if (parseInt(value.co2) < minCo2) {
+        minCo2 = parseInt(value.co2);
+        // console.log("new max co2 " + maxCo2);
+        // console.log(maxCo2);
+      }
       // console.log("pair");
       // console.log(pair);
       new_co2_series.push(pair);
@@ -142,6 +149,8 @@ function loadLast_n_HoursData(nHours = 4) {
 
     //set chart max to max co2 reading in new_co2_series array
     chartT.yAxis[0].update({ max: maxCo2 });
+    chartT.yAxis[0].update({ min: minCo2 });
+
     // chartT.yAxis[0].update({ max: 1500 });
 
     new_co2_series.reverse(); //reverse array
