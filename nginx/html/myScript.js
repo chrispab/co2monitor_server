@@ -40,7 +40,7 @@ var chartT = new Highcharts.Chart({
       {
         color: "#d13d44", // Color value
         from: 800, // Start of the plot band
-        to: 1000, // End of the plot band
+        to: 2000, // End of the plot band
       },
     ],
   },
@@ -53,12 +53,16 @@ Highcharts.setOptions({
 });
 
 //load last n hours of data
+// var maxCo2 = 0; //to store max co2 reading
+
 loadLast_n_HoursData();
 function loadLast_n_HoursData(nHours = 4) {
   const xhttp = new XMLHttpRequest();
   xhttp.onload = function () {
     //   if (this.readyState == 4 && this.status == 200) {
     // var x = new Date().getTime();
+    console.log("n hours = " + nHours);
+
     var y = parseInt(this.responseText);
     console.log("whole reponse text ");
     console.log(this.responseText);
@@ -91,8 +95,7 @@ function loadLast_n_HoursData(nHours = 4) {
     document.getElementById("co2_level").innerHTML =
       str.substring(0, encharloc + 2) + y;
 
-
-      document.getElementById("co2_level").innerHTML = y;
+    document.getElementById("co2_level").innerHTML = y;
 
     document.getElementById("temperature_level").innerHTML = temp;
 
@@ -113,24 +116,40 @@ function loadLast_n_HoursData(nHours = 4) {
     var new_co2_series = [];
     var pair = [];
 
+    var maxCo2 = 0; //to store max co2 reading
+    console.log("current max co2 " + maxCo2);
     data_array.forEach(myFunction);
     function myFunction(value, index, array) {
       // txt += value + "<br>";
-      console.log("value");
-      console.log(value);
+      // console.log("value");
+      // console.log(value);
       pair = [];
       pair.push(new Date(value.sample_time).getTime()); //cv top utc
       pair.push(parseInt(value.co2));
-      console.log("pair");
-      console.log(pair);
+      //is this the biggest c02 reading?
+      if (parseInt(value.co2) > maxCo2) {
+        maxCo2 = parseInt(value.co2);
+        // console.log("new max co2 " + maxCo2);
+        // console.log(maxCo2);
+      }
+      // console.log("pair");
+      // console.log(pair);
       new_co2_series.push(pair);
-      console.log("new_co2_series");
-      console.log(new_co2_series);
+      // console.log("new_co2_series");
+      // console.table(new_co2_series);
     }
+    console.log("new max co2 " + maxCo2);
 
-    //reverse array
-    new_co2_series.reverse();
+    //set chart max to max co2 reading in new_co2_series array
+    chartT.yAxis[0].update({ max: maxCo2 });
+    // chartT.yAxis[0].update({ max: 1500 });
+
+    new_co2_series.reverse(); //reverse array
+
     chartT.series[0].setData(new_co2_series, true, true, true);
+    //set chart max to max co2 reading in new_co2_series array
+    // chartT.setExtremes(null, 100);
+
     //   }
   };
   xhttp.open(
@@ -138,7 +157,8 @@ function loadLast_n_HoursData(nHours = 4) {
     "/get-n-hours.php?api_key=tPmAT5Ab3j7F9&nHours=" + nHours,
     true
   );
-  xhttp.send();
+  xhttp.send();      // console.log("new_co2_series");
+  // console.table(new_co2_series);
 }
 
 //load last n records
@@ -181,13 +201,13 @@ function loadData(num_records = 1000) {
     document.getElementById("co2_level").innerHTML =
       str.substring(0, encharloc + 2) + y;
 
-      document.getElementById("co2_level").innerHTML = y;
+    document.getElementById("co2_level").innerHTML = y;
 
-      document.getElementById("temperature_level").innerHTML = temp;
-  
-      document.getElementById("humidity_level").innerHTML = humidity;
-  
-      document.getElementById("time").innerHTML = dt;
+    document.getElementById("temperature_level").innerHTML = temp;
+
+    document.getElementById("humidity_level").innerHTML = humidity;
+
+    document.getElementById("time").innerHTML = dt;
 
     var gaugeElement = document.getElementsByTagName("canvas")[0];
 
@@ -272,13 +292,13 @@ setInterval(function () {
       document.getElementById("co2_level").innerHTML =
         str.substring(0, encharloc + 2) + y;
 
-        document.getElementById("co2_level").innerHTML = y;
+      document.getElementById("co2_level").innerHTML = y;
 
-        document.getElementById("temperature_level").innerHTML = temp;
-    
-        document.getElementById("humidity_level").innerHTML = humidity;
-    
-        document.getElementById("time").innerHTML = dt;
+      document.getElementById("temperature_level").innerHTML = temp;
+
+      document.getElementById("humidity_level").innerHTML = humidity;
+
+      document.getElementById("time").innerHTML = dt;
 
       var gaugeElement = document.getElementsByTagName("canvas")[0];
 
