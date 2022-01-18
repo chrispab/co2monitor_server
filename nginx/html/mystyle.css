@@ -109,3 +109,61 @@ meter {
     width: 100%;
   }
 }
+.button-width{
+  height:30px;
+  width:100px;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* margin: auto; */
+  margin: 0 auto;
+}
+#startStopBtn {
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+  margin: 0 auto;
+  color: #dcfbb4;
+  background-color: green;
+  border: 0.4em solid #d4f7da;
+  border-radius: 50%;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  width: 4em;
+  height: 4em;
+  line-height: 3em;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(0,0,0,0.1), inset 0 0 0 rgba(0,0,0,0.1);
+  text-align: center;
+}
+.button-width:hover{
+  box-shadow: 0 0 2em rgba(0,0,0,0.1), inset 0 0 1em rgba(0,0,0,0.1);
+  background-color: #29a074;
+}
+.button-col{
+  /* justify-content: center; */
+  /* margin: auto; */
+    /* Center child horizontally*/
+    /* display: flex;
+    justify-content: center; */
+}
+
+.btn-group .button {
+  background-color: #4CAF50; /* Green */
+  border: 1px solid green;
+  color: rgb(7, 7, 7);
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  width: 150px;
+  display: block;
+}
+
+.btn-group .button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+.btn-group .button:hover {
+  background-color: #3e8e41;
+}

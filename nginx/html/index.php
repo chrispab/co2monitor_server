@@ -74,36 +74,38 @@
             <p></p>
 
             <hr />
-            <div>
-                <button type="button" onclick="loadLast_n_HoursData(1)">1 hour</button>
+            <div class="btn-group">
+                <div>
+                    <button class="button" type="button" onclick="loadLast_n_HoursData(1)">1 hour</button>
+                </div>
+                <div>
+                    <button class="button" type="button" onclick="loadLast_n_HoursData(2)">2 hours</button>
+                </div>
+                <div>
+                    <button class="button" type="button" onclick="loadLast_n_HoursData(3)">3 hours</button>
+                </div>
+                <div>
+                    <button class="button" type="button" onclick="loadLast_n_HoursData(4)">4 hours</button>
+                </div>
+                <div>
+                    <button class="button" type="button" onclick="loadLast_n_HoursData(6)">6 hours</button>
+                </div>
+                <div>
+                    <button class="button" type="button" onclick="loadLast_n_HoursData(8)">8 hours</button>
+                </div>
+                <div>
+                    <button class="button" type="button" onclick="loadLast_n_HoursData(12)">12 hours</button>
+                </div>
+                <div>
+                    <button class="button" type="button" onclick="loadLast_n_HoursData(24)">24 hours</button>
+                </div>
+                <div>
+                    <button class="button" type="button" onclick="loadLast_n_HoursData(48)">48 hours</button>
+                </div>
+                <div>
+                    <button class="button" type="button" onclick="loadLast_n_HoursData(76)">76 hours</button>
+                </div>
             </div>
-            <div>
-                <button type="button" onclick="loadLast_n_HoursData(2)">2 hours</button>
-            </div>
-            <div>
-                <button type="button" onclick="loadLast_n_HoursData(3)">3 hours</button>
-            </div>
-            <div>
-                <button type="button" onclick="loadLast_n_HoursData(4)">4 hours</button>
-            </div>
-            <div>
-                <button type="button" onclick="loadLast_n_HoursData(6)">6 hours</button>
-            </div>
-            <div>
-                <button type="button" onclick="loadLast_n_HoursData(8)">8 hours</button>
-            </div>
-            <div>
-                <button type="button" onclick="loadLast_n_HoursData(12)">12 hours</button>
-            </div>
-            <div>
-                <button type="button" onclick="loadLast_n_HoursData(24)">24 hours</button>
-            </div>
-            <div>
-                <button type="button" onclick="loadLast_n_HoursData(48)">48 hours</button>
-            </div>
-            <div>
-                <button type="button" onclick="loadLast_n_HoursData(76)">76 hours</button>
-            </div>                        
         </div>
 
     </div>
