@@ -1,12 +1,26 @@
 var co2series = [];
 //define the chart
 var chartT = new Highcharts.Chart({
-  chart: { renderTo: "chart-co2", type: "spline", zoomType: "x" },
-  title: { text: "CO2 Level - ppm" },
+  chart: {
+    renderTo: "container",
+    type: "spline",
+    zoomType: "x",
+  },
+  title: {
+    text: "CO2 Level - ppm",
+  },
+  subtitle: {
+    text:
+      document.ontouchstart === undefined
+        ? "Click and drag in the plot area to zoom in"
+        : "Pinch the chart to zoom in",
+  },
   series: [
     {
+      type: "area",
       data: [],
       name: "CO2 ppm",
+      color: "#121212",
     },
   ],
   plotOptions: {
@@ -14,8 +28,9 @@ var chartT = new Highcharts.Chart({
       animation: true,
       dataLabels: { enabled: false },
     },
-    series: { color: "#000000" },
+    // series: { color: "#121212" },
   },
+
   xAxis: {
     type: "datetime",
     dateTimeLabelFormats: { second: "%H:%M:%S" },
@@ -28,24 +43,62 @@ var chartT = new Highcharts.Chart({
     max: 1000,
     plotBands: [
       {
-        color: "#9cc940", // Color value
+        color: "rgba(0, 255, 0, 0.2)", // Color value
         from: 300, // Start of the plot band
         to: 700, // End of the plot band
       },
       {
-        color: "#f0cf56", // Color value
+        color: "rgba(255, 255, 0, 0.2)", // Color value
         from: 700, // Start of the plot band
         to: 800, // End of the plot band
       },
       {
-        color: "#d13d44", // Color value
+        // color: "#d13d44", // Color value
+        color: "rgba(255, 0, 0, 0.2)",
         from: 800, // Start of the plot band
         to: 2000, // End of the plot band
       },
     ],
   },
 
-  credits: { enabled: false },
+  plotOptions: {
+    area: {
+      fillColor: {
+        // linearGradient: {
+        //   x1: 0,
+        //   y1: 0,
+        //   x2: 0,
+        //   y2: 1,
+        // },
+        linearGradient: [0, 0, 0, 800],
+        stops: [
+          // [0, Highcharts.getOptions().colors[0]],
+          // [
+          //   1,
+          //   Highcharts.color(Highcharts.getOptions().colors[0])
+          //     .setOpacity(0)
+          //     .get("rgba"),
+          // ],
+          [0, "rgba(255, 0, 0, 1)"],
+          [1,  "rgba(0, 255, 0, 0)"           ],
+        ],
+      },
+      marker: {
+        radius: 2,
+      },
+      lineWidth: 1,
+      states: {
+        hover: {
+          lineWidth: 1,
+        },
+      },
+      threshold: null,
+    },
+  },
+
+  credits: {
+    enabled: false,
+  },
 });
 
 Highcharts.setOptions({
@@ -166,7 +219,7 @@ function loadLast_n_HoursData(nHours = 4) {
     "/get-n-hours.php?api_key=tPmAT5Ab3j7F9&nHours=" + nHours,
     true
   );
-  xhttp.send();      // console.log("new_co2_series");
+  xhttp.send(); // console.log("new_co2_series");
   // console.table(new_co2_series);
 }
 

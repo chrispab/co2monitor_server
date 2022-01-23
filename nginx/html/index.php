@@ -12,8 +12,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+
     <script src="//cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.7/radial/gauge.min.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
     <link rel="stylesheet" href="mystyle.css">
 
@@ -35,11 +41,24 @@
   
   ]' data-color-plate="#222" data-color-major-ticks="#f5f5f5" data-color-minor-ticks="#ddd" data-color-title="#fff" data-color-units="#ccc" data-color-numbers="#eee" data-color-needle-start="rgba(240, 128, 128, 1)" data-color-needle-end="rgba(255, 160, 122, .9)" data-value-box="true" data-animation-rule="bounce" data-animation-duration="500" data-animated-value="true"></canvas>
         </div>
-
         <div class="column middle">
             <!-- <h2>middle</h2> -->
-            <div id="chart-co2" class="chart"></div>
+            <!-- <div id="chart-co2" class="chart"></div> -->
+            <!-- <figure class="highcharts-figure">
+                <div id="chart-co2"></div>
+            </figure> -->
+            <!-- <div id="container" class="chart"> </div> -->
+            <!-- <div id="chart-co2"></div> -->
+
+            <figure class="highcharts-figure">
+                <div id="container" class="chart"></div>
+                <p class="highcharts-description">
+                </p>
+            </figure>
+
         </div>
+
+
 
         <div class="column right-side">
             <h2>Latest Reading</h2>
@@ -103,7 +122,7 @@
                     <button class="button" type="button" onclick="loadLast_n_HoursData(48)">48 hours</button>
                 </div>
                 <div>
-                    <button class="button" type="button" onclick="loadLast_n_HoursData(76)">76 hours</button>
+                    <button class="button" type="button" onclick="loadLast_n_HoursData(72)">72 hours</button>
                 </div>
             </div>
         </div>
