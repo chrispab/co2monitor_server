@@ -43,19 +43,19 @@ var chartT = new Highcharts.Chart({
     max: 1000,
     plotBands: [
       {
-        color: "rgba(0, 255, 0, 0.2)", // Color value
+        color: "rgba(0, 255, 0, 0.5)", // Color value
         from: 300, // Start of the plot band
         to: 700, // End of the plot band
       },
       {
-        color: "rgba(255, 255, 0, 0.2)", // Color value
-        from: 700, // Start of the plot band
+        color: "rgba(255,198,0, 0.5)", // Color value
+        from: 701, // Start of the plot band
         to: 800, // End of the plot band
       },
       {
         // color: "#d13d44", // Color value
-        color: "rgba(255, 0, 0, 0.2)",
-        from: 800, // Start of the plot band
+        color: "rgba(255, 0, 0, 0.5)",
+        from: 801, // Start of the plot band
         to: 2000, // End of the plot band
       },
     ],
@@ -70,7 +70,7 @@ var chartT = new Highcharts.Chart({
         //   x2: 0,
         //   y2: 1,
         // },
-        linearGradient: [0, 0, 0, 800],
+        linearGradient: [0, 0, 0, 500],
         stops: [
           // [0, Highcharts.getOptions().colors[0]],
           // [
@@ -79,8 +79,8 @@ var chartT = new Highcharts.Chart({
           //     .setOpacity(0)
           //     .get("rgba"),
           // ],
-          [0, "rgba(255, 0, 0, 1)"],
-          [1,  "rgba(0, 255, 0, 0)"           ],
+          [0, "rgba(0, 0, 0, 1)"],
+          [1, "rgba(0, 255, 0, 0.5)"],
         ],
       },
       marker: {
