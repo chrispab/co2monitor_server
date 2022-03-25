@@ -51,7 +51,7 @@
             <!-- <div id="chart-co2"></div> -->
 
             <figure class="highcharts-figure">
-                <div id="container" class="chart"></div>
+                <div id="container"></div>
                 <p class="highcharts-description">
                 </p>
             </figure>

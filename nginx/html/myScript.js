@@ -5,6 +5,7 @@ var chartT = new Highcharts.Chart({
     renderTo: "container",
     type: "spline",
     zoomType: "x",
+    height: (9 / 16 * 100) + '%' // 16:9 ratio
   },
   title: {
     text: "CO2 Level - ppm",
@@ -36,6 +37,11 @@ var chartT = new Highcharts.Chart({
     dateTimeLabelFormats: { second: "%H:%M:%S" },
     // dateTimeLabelFormats: { minute: '%H:%M' },
     // dateTimeLabelFormats: { hour: '%H:%M' },
+    labels: {
+      style: {
+          color: 'black'
+      }
+  }
   },
   yAxis: {
     title: { text: "CO2 - ppm" },
@@ -59,6 +65,11 @@ var chartT = new Highcharts.Chart({
         to: 2000, // End of the plot band
       },
     ],
+    labels: {
+      style: {
+          color: 'black'
+      }
+  }
   },
 
   plotOptions: {
